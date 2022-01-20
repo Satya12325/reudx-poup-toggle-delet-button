@@ -1,0 +1,23 @@
+import { useDispatch } from "react-redux";
+import { v4 as uuid } from "uuid";
+import { addTodo } from "../Redux/action";
+import TodoInput from "./TodoInput";
+import TodoList from "./TodoList";
+
+export default function Todo() {
+  const dispatch = useDispatch();
+  const handleAdd = (text) => {
+    const action = addTodo({
+      title: text,
+      status: true,
+      id: uuid()
+    });
+    dispatch(action);
+  };
+  return (
+    <div>
+      <TodoInput onAdd={handleAdd} />
+      <TodoList />
+    </div>
+  );
+}
